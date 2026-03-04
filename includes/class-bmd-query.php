@@ -37,28 +37,26 @@ class BMD_Query {
 
         $user_ids = [];
 
-        foreach ( $plans as $plan ) {
-            // Accept either an integer ID or a slug — try ID first
-            $membership_plan = is_numeric( $plan )
-                ? wc_memberships_get_membership_plan( absint( $plan ) )
-                : wc_memberships_get_membership_plan( $plan );
+		foreach ( $plans as $plan ) {
+			$membership_plan = is_numeric( $plan )
+				? wc_memberships_get_membership_plan( absint( $plan ) )
+				: wc_memberships_get_membership_plan( $plan );
 
-            if ( ! $membership_plan ) continue;
+			if ( ! $membership_plan ) continue;
 
-            $user_memberships = wc_memberships_get_user_memberships( null, [
-                'plan'  => $membership_plan->get_id(),
-                'limit' => -1,
-            ] );
+			// Use WP_Query directly — avoids the null-user/plan-filter bug
+			$membership_posts = get_posts([
+				'post_type'      => 'wc_user_membership',
+				'post_parent'    => $membership_plan->get_id(),
+				'post_status'    => [ 'wcm-active', 'wcm-complimentary' ],
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+			]);
 
-            foreach ( $user_memberships as $membership ) {
-                // Filter to active/complimentary in PHP — avoids wcm- prefix
-                // inconsistencies across WooCommerce Memberships versions
-                $status = $membership->get_status();
-                if ( in_array( $status, [ 'active', 'complimentary', 'wcm-active', 'wcm-complimentary' ], true ) ) {
-                    $user_ids[] = $membership->get_user_id();
-                }
-            }
-        }
+			foreach ( $membership_posts as $post_id ) {
+				$user_ids[] = (int) get_post_field( 'post_author', $post_id );
+			}
+		}
 
         // Deduplicate — a user could hold memberships in multiple plans
         $user_ids = array_values( array_unique( $user_ids ) );
