@@ -1,31 +1,44 @@
-/*
- * Boardroom Member Directory — Structural stylesheet.
- *
- * DESIGN PHILOSOPHY:
- * This file contains ONLY layout and structural rules. It intentionally sets
- * no colours, no font families, no font sizes, and no decorative shadows so
- * that every visual property is inherited from the active WordPress theme.
- *
- * The only exceptions are:
- *   1. The avatar circle (border-radius: 50%) — purely structural.
- *   2. display:none for hidden/search-filtered cards — functional, not visual.
- *   3. The search input box-sizing reset — prevents layout breakage.
- */
-
-/* ─── Search bar ─────────────────────────────────────────────────────────── */
 .bmd-search-wrap {
+    margin-top: 2em;
     margin-bottom: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 420px;
+    width: 100%;
 }
 
 .bmd-search {
     width: 100%;
     max-width: 420px;
     box-sizing: border-box;
-    /* All other styles (border, padding, font, background, focus ring)
-       are intentionally omitted — the theme's input styles will apply. */
 }
 
-/* ─── Grid ───────────────────────────────────────────────────────────────── */
+.bmd-search-clear {
+    position: absolute;
+    right: 0.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-size: 1.2em;
+    background-color: transparent  !important;
+    color: red !important;         
+    min-width: 0;
+    min-height: 0;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 5px;
+}
+
+.bmd-search-clear:hover {
+    background-color: white !important;
+}
+
 .bmd-grid {
     display: grid;
     gap: 1.5em;
@@ -49,22 +62,24 @@
     .bmd-grid--4col { grid-template-columns: 1fr; }
 }
 
-/* ─── Card ───────────────────────────────────────────────────────────────── */
 .bmd-card {
-    /* Padding only — colour, border, shadow come from the theme. */
     padding: 1.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Hidden cards (search filter) */
+.bmd-card:hover {
+    transform: translateY(-4px);
+}
+
 .bmd-card--hidden {
     display: none;
 }
 
-/* ─── Avatar ─────────────────────────────────────────────────────────────── */
 .bmd-card__avatar-wrap {
     margin-bottom: 0.75em;
 }
@@ -72,18 +87,19 @@
 .bmd-card__avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%;   /* structural: makes it a circle */
+    border-radius: 50% !important; 
+    border: 3px solid #00b9e4 !important;
     object-fit: cover;
     display: block;
 }
 
-/* ─── Card body ──────────────────────────────────────────────────────────── */
 .bmd-card__body {
     width: 100%;
 }
 
 .bmd-card__name {
     margin: 0 0 0.2em;
+    color: #00b9e4 !important;
 }
 
 .bmd-card__name a {
@@ -95,11 +111,12 @@
 .bmd-card__linkedin-icon {
     display: inline-flex;
     align-items: center;
+    color: #0077B5;
     flex-shrink: 0;
 }
 
 .bmd-card__title {
-    margin: 0 0 0.75em;
+    margin: 0 0 0.3em;
 }
 
 .bmd-card__company,
@@ -108,13 +125,11 @@
     margin: 0 0 0.3em;
 }
 
-/* ─── Count ──────────────────────────────────────────────────────────────── */
 .bmd-count {
     margin-top: 1.5em;
-    text-align: right;
+    text-align: center;
 }
 
-/* ─── Empty / no-results states ─────────────────────────────────────────── */
 .bmd-empty,
 .bmd-no-results {
     padding: 3em 0;
@@ -130,7 +145,6 @@
     display: block;
 }
 
-/* ─── Profile form ───────────────────────────────────────────────────────── */
 .bmd-profile-form-wrap {
     max-width: 540px;
 }
@@ -147,5 +161,56 @@
 .bmd-field-group input {
     width: 100%;
     box-sizing: border-box;
-    /* Border, padding, font — all inherited from theme input styles. */
+}
+
+.bmd-card__company .bmd-meta-icon svg {
+    color: #00b9e4;   
+    margin-right: 5px;
+}
+
+.bmd-card__industry .bmd-meta-icon svg {
+    color: #00b9e4; 
+    margin-right: 5px;
+}
+
+.bmd-meta-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: default;
+}
+
+.bmd-meta-icon::after {
+    content: attr(aria-label);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    font-size: 0.72em;
+    white-space: nowrap;
+    padding: 3px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.bmd-meta-icon::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #333;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.bmd-meta-icon:hover::after,
+.bmd-meta-icon:hover::before {
+    opacity: 1;
 }
