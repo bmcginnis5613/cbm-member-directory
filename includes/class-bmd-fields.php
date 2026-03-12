@@ -32,17 +32,17 @@ class BMD_Fields {
     public static function get_field_definitions() {
         return [
             'bmd_title'    => [
-                'label'       => __( 'Job Title / Role', 'boardroom-member-directory' ),
+                'label'       => __( 'Board Title / Role', 'boardroom-member-directory' ),
                 'type'        => 'text',
                 'placeholder' => 'e.g. Independent Board Director',
             ],
             'bmd_company'  => [
-                'label'       => __( 'Company / Organization', 'boardroom-member-directory' ),
+                'label'       => __( 'Board Company / Organization', 'boardroom-member-directory' ),
                 'type'        => 'text',
                 'placeholder' => 'e.g. Acme Corp',
             ],
             'bmd_industry' => [
-                'label'       => __( 'Industry / Sector', 'boardroom-member-directory' ),
+                'label'       => __( 'Location / Sector', 'boardroom-member-directory' ),
                 'type'        => 'text',
                 'placeholder' => 'e.g. Financial Services',
             ],
