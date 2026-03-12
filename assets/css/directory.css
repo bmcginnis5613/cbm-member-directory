@@ -207,20 +207,6 @@
     transition: opacity 0.15s ease;
 }
 
-.bmd-meta-icon::before {
-    content: '';
-    position: absolute;
-    bottom: calc(100% + 1px);
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: #333;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-}
-
-.bmd-meta-icon:hover::after,
-.bmd-meta-icon:hover::before {
+.bmd-meta-icon:hover::after {
     opacity: 1;
 }
