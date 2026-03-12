@@ -29,12 +29,12 @@ class BMD_Fields {
     public static function get_field_definitions() {
         return [
             'bmd_title'    => [
-                'label'       => __( 'Board Title / Role', 'boardroom-member-directory' ),
+                'label'       => __( 'Board Title/Role', 'boardroom-member-directory' ),
                 'type'        => 'text',
                 'placeholder' => 'e.g. Independent Board Director',
             ],
             'bmd_company'  => [
-                'label'       => __( 'Board Company / Organization', 'boardroom-member-directory' ),
+                'label'       => __( 'Board Company/Organization', 'boardroom-member-directory' ),
                 'type'        => 'text',
                 'placeholder' => 'e.g. Acme Corp',
             ],
