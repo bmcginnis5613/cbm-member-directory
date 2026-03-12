@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             type="search"
             class="bmd-search"
             autocomplete="off"
-            placeholder="<?php esc_attr_e( 'Search by name, company, or industry', 'boardroom-member-directory' ); ?>"
+            placeholder="<?php esc_attr_e( 'Search by name, company, or location', 'boardroom-member-directory' ); ?>"
             aria-label="<?php esc_attr_e( 'Search members', 'boardroom-member-directory' ); ?>"
         />
         <button class="bmd-search-clear" aria-label="<?php esc_attr_e( 'Clear search', 'boardroom-member-directory' ); ?>" hidden>&times;</button>
@@ -45,13 +45,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <?php foreach ( $members as $member ) :
             $title    = get_user_meta( $member->ID, 'bmd_title',    true );
             $company  = get_user_meta( $member->ID, 'bmd_company',  true );
-            $industry = get_user_meta( $member->ID, 'bmd_industry', true );
+            $location = get_user_meta( $member->ID, 'bmd_location', true );
             $linkedin = get_user_meta( $member->ID, 'bmd_linkedin', true );
             $avatar   = get_avatar_url( $member->ID, [ 'size' => 160 ] );
             $name     = $member->display_name;
             $email    = $member->user_email;
 
-            $search_data = strtolower( implode( ' ', array_filter( [ $name, $company, $industry, $title ] ) ) );
+            $search_data = strtolower( implode( ' ', array_filter( [ $name, $company, $location, $title ] ) ) );
         ?>
         <div class="bmd-card" data-search="<?php echo esc_attr( $search_data ); ?>">
 
@@ -92,14 +92,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     </p>
                 <?php endif; ?>
 
-                <?php if ( $industry ) : ?>
-                    <p class="bmd-card__industry">
+                <?php if ( $location ) : ?>
+                    <p class="bmd-card__location">
                         <span class="bmd-meta-icon" aria-label="<?php esc_attr_e( 'Location', 'boardroom-member-directory' ); ?>">
                             <svg viewBox="0 0 100 100" width="16" height="16" fill="none" stroke="currentColor" stroke-width="8" aria-hidden="true">
                                 <path d="M50 92C50 92 85 62.9 85 38C85 18.7 69.3 3 50 3C30.7 3 15 18.7 15 38C15 62.9 50 92 50 92Z" />
                                 <circle cx="50" cy="38" r="15" />
                             </svg>
-                        </span><?php echo esc_html( $industry ); ?>
+                        </span><?php echo esc_html( $location ); ?>
                     </p>
                 <?php endif; ?>
 
