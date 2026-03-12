@@ -157,8 +157,8 @@ class BMD_Admin {
                 <?php esc_html_e( 'The following fields can be filled in per user under Users → Edit User:', 'boardroom-member-directory' ); ?>
             </p>
             <ul style="list-style:disc;padding-left:20px">
-                <li><strong>bmd_title</strong> — <?php esc_html_e( 'Job Title / Role', 'boardroom-member-directory' ); ?></li>
-                <li><strong>bmd_company</strong> — <?php esc_html_e( 'Company / Organization', 'boardroom-member-directory' ); ?></li>
+                <li><strong>bmd_title</strong> — <?php esc_html_e( 'Board Title/Role', 'boardroom-member-directory' ); ?></li>
+                <li><strong>bmd_company</strong> — <?php esc_html_e( 'Board Company/Organization', 'boardroom-member-directory' ); ?></li>
                 <li><strong>bmd_location</strong> — <?php esc_html_e( 'Location', 'boardroom-member-directory' ); ?></li>
                 <li><strong>bmd_linkedin</strong> — <?php esc_html_e( 'LinkedIn Profile URL', 'boardroom-member-directory' ); ?></li>
             </ul>
