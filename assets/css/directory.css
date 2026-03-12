@@ -130,7 +130,7 @@
 }
 
 .bmd-card__company,
-.bmd-card__industry,
+.bmd-card__location,
 .bmd-card__email {
     margin: 0 0 0.3em;
 }
@@ -178,7 +178,7 @@
     margin-right: 5px;
 }
 
-.bmd-card__industry .bmd-meta-icon svg {
+.bmd-card__location .bmd-meta-icon svg {
     color: #00b9e4; 
     margin-right: 5px;
 }
