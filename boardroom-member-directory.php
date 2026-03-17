@@ -3,7 +3,7 @@
  * Plugin Name:       Member Directory
  * Plugin URI:        https://firsttracksmarketing.com
  * Description:       A lightweight member directory for WooCommerce Memberships. Displays members of a specific membership plan with custom profile fields. Embed with [member_directory] shortcode.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Author:            FirstTracks Marketing
  */
 

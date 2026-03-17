@@ -48,7 +48,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             $location = get_user_meta( $member->ID, 'bmd_location', true );
             $linkedin = get_user_meta( $member->ID, 'bmd_linkedin', true );
             $avatar   = get_avatar_url( $member->ID, [ 'size' => 160 ] );
-            $name     = $member->display_name;
+            $first    = get_user_meta( $member->ID, 'first_name', true );
+            $last     = get_user_meta( $member->ID, 'last_name',  true );
+            $name     = trim( "$first $last" ) ?: $member->display_name;
             $email    = $member->user_email;
 
             $search_data = strtolower( implode( ' ', array_filter( [ $name, $company, $location, $title ] ) ) );
