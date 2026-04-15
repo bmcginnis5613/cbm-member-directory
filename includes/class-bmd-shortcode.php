@@ -40,9 +40,10 @@ class BMD_Shortcode {
         $default_plans = $options['plans'] ?? '';
 
         $atts = shortcode_atts( [
-            'plan'    => $default_plans,   // comma-separated slugs; kept as 'plan' for back-compat
+            'plan'    => $default_plans,  
             'columns' => $options['columns'] ?? 3,
             'search'  => 'true',
+            'avatars' => 'true',
         ], $atts, 'member_directory' );
 
         if ( empty( $atts['plan'] ) ) {
@@ -58,6 +59,7 @@ class BMD_Shortcode {
         $columns = absint( $atts['columns'] );
         $columns = in_array( $columns, [ 2, 3, 4 ], true ) ? $columns : 3;
         $show_search = filter_var( $atts['search'], FILTER_VALIDATE_BOOLEAN );
+        $show_avatars = filter_var( $atts['avatars'], FILTER_VALIDATE_BOOLEAN );
 
         ob_start();
         include BMD_PLUGIN_DIR . 'templates/directory.php';
