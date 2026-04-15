@@ -37,11 +37,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <?php endif; ?>
     <?php endif; ?>
 
-    <!--
-    <?php if ( empty( $members ) ) : ?>
-        <p class="bmd-empty"><?php esc_html_e( 'No members found.', 'boardroom-member-directory' ); ?></p>
-    <?php else : ?>
-    -->
+    //<?php if ( empty( $members ) ) : ?>
+        // <p class="bmd-empty"><?php esc_html_e( 'No members found.', 'boardroom-member-directory' ); ?></p>
+    //<?php else : ?>
     
     <div class="bmd-grid bmd-grid--<?php echo esc_attr( $columns ); ?>col">
         <?php foreach ( $members as $member ) :
