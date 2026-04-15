@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             $company  = get_user_meta( $member->ID, 'bmd_company',  true );
             $location = get_user_meta( $member->ID, 'bmd_location', true );
             $linkedin = get_user_meta( $member->ID, 'bmd_linkedin', true );
-            $avatar   = get_avatar_url( $member->ID, [ 'size' => 160 ] );
+            $avatar = $show_avatars ? get_avatar_url( $member->ID, [ 'size' => 160 ] ) : '';
             $first    = get_user_meta( $member->ID, 'first_name', true );
             $last     = get_user_meta( $member->ID, 'last_name',  true );
             $name     = trim( "$first $last" ) ?: $member->display_name;
@@ -57,16 +57,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         ?>
         <div class="bmd-card" data-search="<?php echo esc_attr( $search_data ); ?>">
 
-            <div class="bmd-card__avatar-wrap">
-                <img
-                    class="bmd-card__avatar"
-                    src="<?php echo esc_url( $avatar ); ?>"
-                    alt="<?php echo esc_attr( $name ); ?>"
-                    width="80"
-                    height="80"
-                    loading="lazy"
-                />
-            </div>
+            <?php if ( $show_avatars ) : ?>
+                <div class="bmd-card__avatar-wrap">
+                    <img
+                        class="bmd-card__avatar"
+                        src="<?php echo esc_url( $avatar ); ?>"
+                        alt="<?php echo esc_attr( $name ); ?>"
+                        width="80"
+                        height="80"
+                        loading="lazy"
+                    />
+                </div>
+            <?php endif; ?>
 
             <div class="bmd-card__body">
                 <h3 class="bmd-card__name">
